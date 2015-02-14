@@ -3,16 +3,19 @@ package cow.farm.utils;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class WojteksArrayListTest {
 
-	private WojteksArrayList objectUnderTest;
+	private WojteksArrayList<Object> objectUnderTest;
 
+	@SuppressWarnings("rawtypes")
 	private WojteksArrayList aBigObjectUnderTest;
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@BeforeMethod
 	public void setUp() {
 
@@ -107,6 +110,7 @@ public class WojteksArrayListTest {
 
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Test
 	public void checkTheIterator() {
 		// given
@@ -184,6 +188,7 @@ public class WojteksArrayListTest {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void checkAddAllWith2Params() {
 		// given:
