@@ -5,8 +5,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.ArrayList;
-import java.util.Objects;
 
 public class WojteksArrayList<T> implements List<Object> {
 	static final int INITIAL_SIZE = 10;
@@ -222,7 +220,6 @@ public boolean removeAll(Collection<?> arg0) {
 	}
 
 	public boolean retainAll(Collection<?> arg0) {
-		Object[] a = arg0.toArray();
 		boolean modPointer = false;
 		for (int i = 0; i < size; i++) {
 			// add ! before instead of false compare
@@ -252,7 +249,7 @@ public boolean removeAll(Collection<?> arg0) {
 	public List<Object> subList(int arg0, int arg1) {
 
 		// so this will be 0 for equal arguments
-		WojteksArrayList sublist = new WojteksArrayList(arg1 - arg0);
+		WojteksArrayList<T> sublist = new WojteksArrayList<T>(arg1 - arg0);
 		for (int i = arg0; i < arg1; i++) {
 			// Arrays.copyOfRange(array, 0, size)
 			sublist.add(array[i]);
@@ -267,6 +264,7 @@ public boolean removeAll(Collection<?> arg0) {
 	}
 
 	// that should be easy :P
+	@SuppressWarnings("unchecked")
 	public Object[] toArray(Object[] arg0) {
 		// TODO Auto-generated method stub
 		return null;
@@ -295,6 +293,4 @@ public boolean removeAll(Collection<?> arg0) {
 
 	}
 
-	
-	
 }

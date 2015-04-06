@@ -1,6 +1,8 @@
-package com.farm;
+package cow.farm;
 
 import cow.farm.utils.SpecialArrayList;
+
+
 
 public class CowHerdService {
 
@@ -9,15 +11,15 @@ public class CowHerdService {
 	}
 	private SpecialArrayList<Cow> cowlist = new SpecialArrayList<Cow>();
 	
-	public Cow createCowAndAddToCowlist(String name, String race) {
-		Cow aCow = new Cow ();
-		aCow.setName(name);
-		aCow.setRace(race);
-		cowlist.add(aCow);		
+	public Cow createCowAndAddToCowlist(String race) {
+		Cow aCow = new Cow (race);
+		cowlist.add(aCow);
 		return aCow;
-		}
-
-	
-	
+		
+		
+		}	
+	public SpecialArrayList<Cow> getTheCowlist() {
+		return cowlist;
+	}
 
 }

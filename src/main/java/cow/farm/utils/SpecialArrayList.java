@@ -1,7 +1,7 @@
 package cow.farm.utils;
+import cow.farm.*;
 
 import java.util.Collection;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -27,16 +27,17 @@ public class SpecialArrayList<T> extends WojteksArrayList<T> {
 		return false;
 	}
 
-	public HashMap<Object, Integer> getQuantityOfEachObject() {
+	public HashMap <Object, Integer> getQuantityOfEachRace() {
 
-		HashMap<Object, Integer> hashmap = new HashMap<Object, Integer>();
+		HashMap <Object, Integer> hashmap = new HashMap <Object, Integer>();
 
 		for (Object val : this) {
-			if (hashmap.containsKey(val)) {
-				int a = hashmap.get(val);
-				hashmap.put(val, ++a);
+			String s =  ((Cow) val).getRace();
+			if (hashmap.containsKey(s)) {
+				int a = hashmap.get(s);
+				hashmap.put(s, ++a);
 			} else {
-				hashmap.put(val, 1);
+				hashmap.put(s, 1);
 			}
 		}
 		return hashmap;
