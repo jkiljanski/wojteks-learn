@@ -3,16 +3,19 @@ package cow.farm.utils;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class WojteksArrayListTest {
 
-	private WojteksArrayList objectUnderTest;
+	private WojteksArrayList<Object> objectUnderTest;
 
+	@SuppressWarnings("rawtypes")
 	private WojteksArrayList aBigObjectUnderTest;
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@BeforeMethod
 	public void setUp() {
 
@@ -107,6 +110,7 @@ public class WojteksArrayListTest {
 
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Test
 	public void checkTheIterator() {
 		// given
@@ -184,6 +188,7 @@ public class WojteksArrayListTest {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void checkAddAllWith2Params() {
 		// given:
@@ -225,14 +230,13 @@ public class WojteksArrayListTest {
 		}
 		System.out.println("SHOULD INCREASE ARRAY SIZE");
 		objectUnderTest.printMe();
-		List o = objectUnderTest;
+		List <?>o = objectUnderTest;
 		//when
 		objectUnderTest.add("nowy element");
 		objectUnderTest.printMe();
 		//then		
-		WojteksArrayList a = (WojteksArrayList) objectUnderTest.subList(0, 11);
+		WojteksArrayList<?> a = (WojteksArrayList) objectUnderTest.subList(0, 11);
 		a.printMe();
-		boolean equals = Arrays.equals(a.toArray(), o.toArray());
 		boolean equalsAlternative = Arrays.equals(a.toArray(), Arrays.copyOfRange(objectUnderTest.toArray(), 0, 11));
 		Assert.assertEquals(equalsAlternative, true);
 
@@ -245,7 +249,7 @@ public class WojteksArrayListTest {
 	}
 
 	@Test
-	public void shouldCheckSublistMethod() {
+	public <T> void shouldCheckSublistMethod() {
 		objectUnderTest.add(1);
 		objectUnderTest.add(2);
 		objectUnderTest.add(3);
@@ -255,7 +259,7 @@ public class WojteksArrayListTest {
 		objectUnderTest.add(7);
 		objectUnderTest.add(8);
 		//when
-		WojteksArrayList a = (WojteksArrayList) objectUnderTest.subList(3, 7);
+		WojteksArrayList<T> a = (WojteksArrayList<T>) objectUnderTest.subList(3, 7);
 
 		//then
 		Assert.assertEquals(a.get(0), 4);
@@ -265,11 +269,11 @@ public class WojteksArrayListTest {
 	}
 
 	@Test
-	public void shouldCheckTheRemoveAllMethod() {
+	public <T> void shouldCheckTheRemoveAllMethod() {
 		objectUnderTest.add(1);
 		objectUnderTest.add(2);
 		objectUnderTest.add(3);
-		WojteksArrayList b = new WojteksArrayList();
+		WojteksArrayList<T> b = new WojteksArrayList<T>();
 		b.add(2);
 		b.add(3);
 		b.add(1);
@@ -279,7 +283,7 @@ public class WojteksArrayListTest {
 	}
 
 	@Test
-	public void shouldRetainAllElementsInCollection() {
+	public <T> void shouldRetainAllElementsInCollection() {
 		//given:
 		objectUnderTest.add(1);
 		objectUnderTest.add(1);
@@ -295,7 +299,7 @@ public class WojteksArrayListTest {
 		System.out.println("RETAIN ALL");
 		objectUnderTest.printMe();
 
-		WojteksArrayList aCollection = new WojteksArrayList();
+		WojteksArrayList<T> aCollection = new WojteksArrayList<T>();
 		aCollection.add(2);
 		//when:
 
@@ -309,7 +313,7 @@ public class WojteksArrayListTest {
 	}
 
 	@Test
-	public void shouldCleanUpAllNulls() {
+	public <T> void shouldCleanUpAllNulls() {
 		objectUnderTest.add(1);
 		objectUnderTest.add(1);
 		objectUnderTest.add(2);
@@ -321,7 +325,7 @@ public class WojteksArrayListTest {
 		objectUnderTest.add(3);
 		objectUnderTest.addAll(aBigObjectUnderTest);
 
-		WojteksArrayList aCollection = new WojteksArrayList();
+		WojteksArrayList<T> aCollection = new WojteksArrayList<T>();
 		aCollection.add(2);
 		//when:
 
