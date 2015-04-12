@@ -1,25 +1,60 @@
 package cow.farm;
 
-import cow.farm.utils.SpecialArrayList;
+import java.util.HashMap;
+
+import cow.farm.utils.QuantityCheckingList;
 
 
 
-public class CowHerdService {
+public class CowHerdService implements Function{
 
 	public CowHerdService() {
-		// TODO Auto-generated constructor stub
 	}
-	private SpecialArrayList<Cow> cowlist = new SpecialArrayList<Cow>();
+	private QuantityCheckingList<Cow> cowlist = new QuantityCheckingList<Cow>();
 	
-	public Cow createCowAndAddToCowlist(String race) {
-		Cow aCow = new Cow (race);
+	public Cow createCowAndAddToCowlist(String race, String name) {
+		Cow aCow = new Cow (race, name);
 		cowlist.add(aCow);
 		return aCow;
 		
+		}
+	
+	
+	public HashMap <Object, Integer> getQuantityOfEachRace(String function){
+		HashMap <Object, Integer> hashmap = new HashMap <>();
 		
-		}	
-	public SpecialArrayList<Cow> getTheCowlist() {
+		
+		for (Object val : cowlist) {
+			Object s =  ((Cow) val);
+			
+			if (hashmap.containsKey(s)) {
+				int a = hashmap.get(s);
+				hashmap.put(s, ++a);
+			} else {
+				hashmap.put(s, 1);
+			}
+		}
+		return hashmap;
+
+	}	
+	
+	
+	
+	public QuantityCheckingList<Cow> getTheCowlist() {
 		return cowlist;
 	}
 
-}
+
+
+	@Override
+	public <T, K> K transform(T input) {
+		
+		
+		return null;
+		}
+		
+		
+	}
+	
+	
+	

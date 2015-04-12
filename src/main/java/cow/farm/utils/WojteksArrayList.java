@@ -13,7 +13,6 @@ public class WojteksArrayList<T> implements List<Object> {
 	private int size;
 	
 	public WojteksArrayList() {
-		// extract constant
 		array = new Object[INITIAL_SIZE];
 		size = 0;
 	}
@@ -76,7 +75,6 @@ public class WojteksArrayList<T> implements List<Object> {
 
 	private void makePlace(int expectedArraySizeAfterOperation) {
 		if (array.length < expectedArraySizeAfterOperation) {
-			// FIXME magic number
 			Object[] placeholder = new Object[expectedArraySizeAfterOperation
 					+ INITIAL_SIZE];
 			for (int i = 0; i < array.length; i++) {
@@ -94,7 +92,6 @@ public class WojteksArrayList<T> implements List<Object> {
 
 	public boolean contains(Object arg0) {
 		for (Object val : array) {
-			// FIXME use equals()
 			if (val != null) {
 				if (val.equals(arg0)) {
 					return true;
@@ -104,7 +101,6 @@ public class WojteksArrayList<T> implements List<Object> {
 		return false;
 	}
 
-	// TODO finish me
 	public boolean containsAll(Collection<?> arg0) {
 		Object[] a = arg0.toArray();
 		for (Object val : a) {
@@ -113,14 +109,12 @@ public class WojteksArrayList<T> implements List<Object> {
 		return false;
 	}
 
-	// TODO check what is thrown on invalid index
 	public Object get(int indexToGetObjectFrom) {
 		checkRange(indexToGetObjectFrom);
 		return array[indexToGetObjectFrom];
 	}
 
 	public int indexOf(Object arg0) {
-		// FIXME double iteration
 		if (arg0 == null) {
 			for (int index = 0; index < size; index++) {
 				if (array[index] == null) {
@@ -146,11 +140,7 @@ public class WojteksArrayList<T> implements List<Object> {
 		return this.new It();
 	}
 
-	// FIXME class name should always start with capital letter
-	// FIXME every name should be meaningful, call it WojteksArrayListIterator
 	public class It implements Iterator<Object> {
-		// I know that it hase default value, but we should set it to 0 explicit
-		// just to make it more readable
 		private int currentIndex = 0;
 
 		public boolean hasNext() {
@@ -173,12 +163,10 @@ public class WojteksArrayList<T> implements List<Object> {
 	}
 
 	public ListIterator<Object> listIterator() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public ListIterator<Object> listIterator(int arg0) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -222,9 +210,6 @@ public boolean removeAll(Collection<?> arg0) {
 	public boolean retainAll(Collection<?> arg0) {
 		boolean modPointer = false;
 		for (int i = 0; i < size; i++) {
-			// add ! before instead of false compare
-			// what a hacky way to push responsibility to outher class
-			// (contains) :P
 			if (arg0.contains(array[i]) == false) {
 				array[i] = null;
 			}
@@ -232,7 +217,6 @@ public boolean removeAll(Collection<?> arg0) {
 		return modPointer;
 	}
 
-	// add more meaningful names
 	public Object set(int arg0, Object arg1) {
 		checkRange(arg0);
 		Object previousObject = array[arg0];
@@ -244,11 +228,8 @@ public boolean removeAll(Collection<?> arg0) {
 		return size;
 	}
 
-	// check javadoc for this method carefully, one range end is included, one
-	// excluded
 	public List<Object> subList(int arg0, int arg1) {
 
-		// so this will be 0 for equal arguments
 		WojteksArrayList<T> sublist = new WojteksArrayList<T>(arg1 - arg0);
 		for (int i = arg0; i < arg1; i++) {
 			// Arrays.copyOfRange(array, 0, size)
@@ -263,14 +244,11 @@ public boolean removeAll(Collection<?> arg0) {
 		return arrayExactlyRepresentingList;
 	}
 
-	// that should be easy :P
 	@SuppressWarnings("unchecked")
 	public Object[] toArray(Object[] arg0) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
-	// we use toString() to present object
 	public void printMe() {
 		System.out.println(toString());
 		for (int i = 0; i < size; i++) {
@@ -280,10 +258,6 @@ public boolean removeAll(Collection<?> arg0) {
 
 	}
 
-	// TODO metoda do usuwania nulli w liście
-	// FIXME nie działa!!!
-	// first you look for object just to search for it once again :P, check
-	// remove doc, maybe you can call remove(null) simply
 	public void cleanUp() {
 		for (Object val : array) {
 			if (val == null) {

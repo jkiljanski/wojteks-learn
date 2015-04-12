@@ -19,17 +19,20 @@ import cow.farm.CowHerdService;
 	@Test
 	public void shouldReturnTheQuantityOfCowsByRace() {
 		//given:
-		cowherdservice.createCowAndAddToCowlist("Czarna");
-		cowherdservice.createCowAndAddToCowlist("Czarna");
-		cowherdservice.createCowAndAddToCowlist("Biała");
-		cowherdservice.createCowAndAddToCowlist("Biała");
+		cowherdservice.createCowAndAddToCowlist("Czarna", "Hela");
+		cowherdservice.createCowAndAddToCowlist("Czarna", "Mela");
+		cowherdservice.createCowAndAddToCowlist("Biała", "Ryszard");
+		cowherdservice.createCowAndAddToCowlist("Biała", "Henryk");
+		cowherdservice.createCowAndAddToCowlist("Biała", "Andrzej");
 		
-		HashMap<Object, Integer> quantityHashmap = cowherdservice.getTheCowlist().getQuantityOfEachRace();
+		
+		HashMap<Object, Integer> quantityHashmap = cowherdservice.getQuantityOfEachRace();
 		Integer i = 2;
 		Assert.assertEquals(quantityHashmap.get("Czarna"),i);
 		
+		System.out.println(quantityHashmap.entrySet());
 }
 
 	
-	
+
 }
